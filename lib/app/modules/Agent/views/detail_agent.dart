@@ -103,6 +103,54 @@ class DetailAgent extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(10),
                       child: Text(
+                        "Role",
+                        style: GoogleFonts.bowlbyOneSc(color: redbackground),
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: SizedBox(
+                            width: 30.w,
+                            height: 30.h,
+                            child: CachedNetworkImage(
+                              imageUrl: "${agent.role!.displayIcon}",
+                              imageBuilder: (context, imageProvider) =>
+                                  Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(16.r),
+                                  image: DecorationImage(
+                                    image: imageProvider,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              progressIndicatorBuilder:
+                                  (context, url, downloadProgress) => Center(
+                                child: CircularProgressIndicator(
+                                    value: downloadProgress.progress),
+                              ),
+                              errorWidget: (context, url, error) => Image.asset(
+                                "assets/images/Image_not_available.png",
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: Text(
+                            "${agent.role!.displayName}",
+                            style: GoogleFonts.bowlbyOneSc(color: Colors.white),
+                          ),
+                        ),
+                      ],
+                    )
+                  ]),
+                  TableRow(children: [
+                    Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Text(
                         "Description",
                         style: GoogleFonts.bowlbyOneSc(color: redbackground),
                       ),
