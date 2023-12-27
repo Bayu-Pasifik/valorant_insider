@@ -23,12 +23,13 @@ class AgentView extends GetView<AgentController> {
           ),
           centerTitle: true,
           elevation: 0,
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-              gradient:
-                  LinearGradient(colors: [redbackground, blackgroundColor]),
-            ),
-          ),
+          // flexibleSpace: Container(
+          //   decoration: BoxDecoration(
+          //     gradient:
+          //         LinearGradient(colors: [redbackground, blackgroundColor]),
+          //   ),
+          // ),
+          backgroundColor: blackgroundColor,
         ),
         body: FutureBuilder(
           future: controller.getAllAgent(),
@@ -62,61 +63,46 @@ class AgentView extends GetView<AgentController> {
               itemBuilder: (context, index) {
                 AgentModel agent = snapshot.data![index];
                 // print(agent.displayIcon);
-                return Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        width: 200.w,
-                        height: 200.h,
-                        child: GestureDetector(
-                          onTap: () {
-                            // Get.toNamed("/",arguments: agent);
-                            Get.to(const DetailAgent(), arguments: agent);
-                          },
-                          child: (agent.displayIcon == "")
-                              ? Image.asset(
-                                  "assets/images/Image_not_available.png")
-                              : CachedNetworkImage(
-                                  imageUrl: agent.displayIcon!,
-                                  imageBuilder: (context, imageProvider) =>
-                                      Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(16.r),
-                                      image: DecorationImage(
-                                        image: imageProvider,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                  progressIndicatorBuilder:
-                                      (context, url, downloadProgress) =>
-                                          Center(
-                                    child: CircularProgressIndicator(
-                                        value: downloadProgress.progress),
-                                  ),
-                                  errorWidget: (context, url, error) =>
-                                      Image.asset(
-                                    "assets/images/Image_not_available.png",
-                                  ),
-                                ),
-                        ),
+                return GestureDetector(
+                  onTap: () =>
+                      Get.to(() => const DetailAgent(), arguments: agent),
+                  child: Container(
+                    width: 200.w,
+                    height: 200.h,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: redbackground, width: 1)),
+                    child: Column(children: [
+                      Text(
+                        "${agent.displayName}",
+                        style: GoogleFonts.bowlbyOneSc(color: Colors.white),
                       ),
-                      Center(
-                        child: SizedBox(
-                          width: 100.w,
-                          height: 30.h,
-                          // color: Colors.white,
-                          child: Center(
-                            child: Text(
-                              "${agent.displayName}".toUpperCase(),
-                              style:
-                                  GoogleFonts.bowlbyOneSc(color: Colors.white),
+                      SizedBox(
+                        width: 220.w,
+                        height: 220.h,
+                        child: CachedNetworkImage(
+                          imageUrl: agent.fullPortrait!,
+                          imageBuilder: (context, imageProvider) => Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(16.r),
+                              image: DecorationImage(
+                                image: imageProvider,
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
+                          progressIndicatorBuilder:
+                              (context, url, downloadProgress) => Center(
+                            child: CircularProgressIndicator(
+                                value: downloadProgress.progress),
+                          ),
+                          errorWidget: (context, url, error) => Image.asset(
+                            "assets/images/Image_not_available.png",
+                          ),
                         ),
-                      )
-                    ]);
+                      ),
+                    ]),
+                  ),
+                );
               },
             );
           },
