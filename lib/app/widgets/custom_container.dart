@@ -29,7 +29,9 @@ class ContainerToClip extends StatelessWidget {
                   ? Get.toNamed(Routes.MAP)
                   : to == "playercard"
                       ? Get.toNamed(Routes.PLAYER_CARD)
-                      : Get.toNamed(Routes.WEAPON),
+                      : to == "playerTitle"
+                          ? Get.toNamed(Routes.PLAYER_TITLE)
+                          : Get.toNamed(Routes.WEAPON),
       child: Container(
         height: 160,
         padding: const EdgeInsets.all(20),

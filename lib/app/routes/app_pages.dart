@@ -8,6 +8,8 @@ import '../modules/Map/bindings/map_binding.dart';
 import '../modules/Map/views/map_view.dart';
 import '../modules/PlayerCard/bindings/player_card_binding.dart';
 import '../modules/PlayerCard/views/player_card_view.dart';
+import '../modules/PlayerTitle/bindings/player_title_binding.dart';
+import '../modules/PlayerTitle/views/player_title_view.dart';
 import '../modules/Weapon/bindings/weapon_binding.dart';
 import '../modules/Weapon/views/weapon_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -50,6 +52,11 @@ class AppPages {
       name: _Paths.PLAYER_CARD,
       page: () => const PlayerCardView(),
       binding: PlayerCardBinding(),
+    ),
+    GetPage(
+      name: _Paths.PLAYER_TITLE,
+      page: () => const PlayerTitleView(),
+      binding: PlayerTitleBinding(),
     ),
   ];
 }

@@ -77,6 +77,18 @@ class HomeView extends GetView<HomeController> {
               to: "playercard",
             ),
           ),
+          ClipPath(
+            clipper: DirectionalWaveClipper(
+              verticalPosition: VerticalPosition.top,
+              horizontalPosition: HorizontalPosition.right,
+            ),
+            child: const ContainerToClip(
+              'Player Title',
+              'assets/images/playerTitle.png',
+              isImageOnLeft: false,
+              to: "playerTitle",
+            ),
+          ),
         ],
       ),
     );
