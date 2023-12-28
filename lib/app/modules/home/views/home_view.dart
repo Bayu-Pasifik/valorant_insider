@@ -15,7 +15,7 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Valorant Guide".toUpperCase()),
+        title: Text("Valorant Insider".toUpperCase()),
         centerTitle: true,
         elevation: 0,
         backgroundColor: blackgroundColor,

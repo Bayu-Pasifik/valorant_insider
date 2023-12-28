@@ -1,18 +1,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:valorant_insider/app/constant/constant.dart';
 import 'package:valorant_insider/app/data/models/agent_model.dart';
 import 'package:valorant_insider/app/widgets/painter.dart';
 
 class DetailAgent extends StatelessWidget {
-  const DetailAgent({Key? key}) : super(key: key);
-
+  const DetailAgent({required  this.agent, Key? key}) : super(key: key);
+  final AgentModel agent;
   @override
   Widget build(BuildContext context) {
-    AgentModel agent = Get.arguments;
+    // AgentModel agent = Get.arguments;
     return Scaffold(
       backgroundColor: blackgroundColor,
       appBar: AppBar(
@@ -235,5 +234,3 @@ class DetailAgent extends StatelessWidget {
     );
   }
 }
-
-

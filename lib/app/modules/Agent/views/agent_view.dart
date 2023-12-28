@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,12 +24,6 @@ class AgentView extends GetView<AgentController> {
           ),
           centerTitle: true,
           elevation: 0,
-          // flexibleSpace: Container(
-          //   decoration: BoxDecoration(
-          //     gradient:
-          //         LinearGradient(colors: [redbackground, blackgroundColor]),
-          //   ),
-          // ),
           backgroundColor: blackgroundColor,
         ),
         body: FutureBuilder(
@@ -62,46 +57,56 @@ class AgentView extends GetView<AgentController> {
                   mainAxisSpacing: 20),
               itemBuilder: (context, index) {
                 AgentModel agent = snapshot.data![index];
-                // print(agent.displayIcon);
-                return GestureDetector(
-                  onTap: () =>
-                      Get.to(() => const DetailAgent(), arguments: agent),
-                  child: Container(
-                    width: 200.w,
-                    height: 200.h,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: redbackground, width: 1)),
-                    child: Column(children: [
-                      Text(
-                        "${agent.displayName}",
-                        style: GoogleFonts.bowlbyOneSc(color: Colors.white),
-                      ),
-                      SizedBox(
-                        width: 220.w,
-                        height: 220.h,
-                        child: CachedNetworkImage(
-                          imageUrl: agent.fullPortrait!,
-                          imageBuilder: (context, imageProvider) => Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(16.r),
-                              image: DecorationImage(
-                                image: imageProvider,
-                                fit: BoxFit.cover,
+                return OpenContainer(
+                  tappable: true,
+                  transitionDuration: const Duration(milliseconds: 800),
+                  closedColor: Colors.transparent,
+                  openColor: Colors.transparent,
+                  clipBehavior: Clip.hardEdge,
+
+                  closedBuilder: (context, action) {
+                    return Container(
+                      width: 200.w,
+                      height: 200.h,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: redbackground, width: 1)),
+                      child: Column(children: [
+                        Text(
+                          "${agent.displayName}",
+                          style: GoogleFonts.bowlbyOneSc(color: Colors.white),
+                        ),
+                        SizedBox(
+                          width: 220.w,
+                          height: 220.h,
+                          child: CachedNetworkImage(
+                            imageUrl: agent.fullPortrait!,
+                            imageBuilder: (context, imageProvider) => Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(16.r),
+                                image: DecorationImage(
+                                  image: imageProvider,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
-                          ),
-                          progressIndicatorBuilder:
-                              (context, url, downloadProgress) => Center(
-                            child: CircularProgressIndicator(
-                                value: downloadProgress.progress),
-                          ),
-                          errorWidget: (context, url, error) => Image.asset(
-                            "assets/images/Image_not_available.png",
+                            progressIndicatorBuilder:
+                                (context, url, downloadProgress) => Center(
+                              child: CircularProgressIndicator(
+                                  value: downloadProgress.progress),
+                            ),
+                            errorWidget: (context, url, error) => Image.asset(
+                              "assets/images/Image_not_available.png",
+                            ),
                           ),
                         ),
-                      ),
-                    ]),
-                  ),
+                      ]),
+                    );
+                  },
+                  openBuilder: (context, action) {
+                    return DetailAgent(
+                      agent: agent,
+                    );
+                  },
                 );
               },
             );
