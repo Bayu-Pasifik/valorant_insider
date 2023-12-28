@@ -12,7 +12,9 @@ import 'dart:convert';
 // import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:valorant_insider/app/constant/constant.dart';
 import 'package:valorant_insider/app/data/models/agent_model.dart';
+import 'package:valorant_insider/app/data/models/weapon_model.dart';
 
 // import 'package:valorant_insider/main.dart';
 
@@ -34,13 +36,11 @@ void main() async {
   //   expect(find.text('1'), findsOneWidget);
   // });
 
-  Uri url =
-      Uri.parse('https://valorant-api.com/v1/agents?isPlayableCharacter=true');
+  Uri url = Uri.parse(urlWeapon);
   var response = await http.get(url);
-  if (response.statusCode == 200) {
-    var tempdata = json.decode(response.body)['data'];
-    var data = tempdata.map((e) => AgentModel.fromJson(e));
-    var listAgent = List<AgentModel>.from(data);
-    debugPrint(listAgent[0].displayName);
-  }
+
+  var tempdata = json.decode(response.body)["data"];
+  var data = tempdata.map((e) => WeaponModel.fromJson(e));
+  print(data);
+  // listWeapons = List<WeaponModel>.from(data);
 }
