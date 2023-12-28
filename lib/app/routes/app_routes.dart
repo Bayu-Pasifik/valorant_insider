@@ -8,6 +8,7 @@ abstract class Routes {
   static const BUDDIES = _Paths.BUDDIES;
   static const MAP = _Paths.MAP;
   static const WEAPON = _Paths.WEAPON;
+  static const PLAYER_CARD = _Paths.PLAYER_CARD;
 }
 
 abstract class _Paths {
@@ -17,4 +18,5 @@ abstract class _Paths {
   static const BUDDIES = '/buddies';
   static const MAP = '/map';
   static const WEAPON = '/weapon';
+  static const PLAYER_CARD = '/player-card';
 }

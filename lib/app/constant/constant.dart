@@ -6,3 +6,4 @@ String urlBuddies = "https://valorant-api.com/v1/buddies";
 String urlAgent = "https://valorant-api.com/v1/agents?isPlayableCharacter=true";
 String urlMap = "https://valorant-api.com/v1/maps";
 String urlWeapon = "https://valorant-api.com/v1/weapons";
+String urlPlayerCard = "https://valorant-api.com/v1/playercards";

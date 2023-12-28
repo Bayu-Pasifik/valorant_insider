@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:valorant_insider/app/constant/constant.dart';
-import 'package:valorant_insider/app/routes/app_pages.dart';
+import 'package:valorant_insider/app/widgets/custom_container.dart';
 
 import '../controllers/home_controller.dart';
 import 'package:custom_clippers/custom_clippers.dart';
@@ -45,7 +45,7 @@ class HomeView extends GetView<HomeController> {
               to: "buddies",
             ),
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: 20.h),
           ClipPath(
             clipper: DirectionalWaveClipper(),
             child: const ContainerToClip(
@@ -67,71 +67,17 @@ class HomeView extends GetView<HomeController> {
               to: "weapon",
             ),
           ),
-        ],
-      ),
-    );
-  }
-}
-
-class ContainerToClip extends StatelessWidget {
-  const ContainerToClip(
-    this.text,
-    this.assets, {
-    required this.isImageOnLeft,
-    required this.to,
-    super.key,
-  });
-
-  final String text;
-  final String assets;
-  final bool isImageOnLeft;
-  final String to;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => to == "agent"
-          ? Get.toNamed(Routes.AGENT)
-          : to == "buddies"
-              ? Get.toNamed(Routes.BUDDIES)
-              : to == "map"
-                  ? Get.toNamed(Routes.MAP)
-                  : Get.toNamed(Routes.WEAPON),
-      child: Container(
-        height: 160,
-        padding: const EdgeInsets.all(20),
-        // color: color,
-        decoration: BoxDecoration(
-            gradient:
-                LinearGradient(colors: [redbackground, blackgroundColor])),
-        child: Row(
-          children: [
-            if (isImageOnLeft)
-              Align(
-                alignment: Alignment.centerLeft,
-                child: SizedBox(
-                  height: 150,
-                  width: 150,
-                  child: Image.asset(assets),
-                ),
-              ),
-            Expanded(
-              child: Text(
-                text.toUpperCase(),
-                style: GoogleFonts.bowlbyOneSc(color: Colors.white),
-              ),
+          SizedBox(height: 20.h),
+          ClipPath(
+            clipper: DirectionalWaveClipper(),
+            child: const ContainerToClip(
+              'Player Cards',
+              'assets/images/playercard.png',
+              isImageOnLeft: true,
+              to: "playercard",
             ),
-            if (!isImageOnLeft)
-              Align(
-                alignment: Alignment.centerRight,
-                child: SizedBox(
-                  height: 150,
-                  width: 150,
-                  child: Image.asset(assets),
-                ),
-              ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
