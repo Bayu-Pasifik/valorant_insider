@@ -4,3 +4,4 @@ Color blackgroundColor = const Color(0xff0F1923);
 Color redbackground = const Color(0xffFF4655);
 String urlBuddies = "https://valorant-api.com/v1/buddies";
 String urlAgent = "https://valorant-api.com/v1/agents?isPlayableCharacter=true";
+String urlMap = "https://valorant-api.com/v1/maps";

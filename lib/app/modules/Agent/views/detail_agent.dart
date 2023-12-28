@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:valorant_insider/app/constant/constant.dart';
 import 'package:valorant_insider/app/data/models/agent_model.dart';
+import 'package:valorant_insider/app/widgets/painter.dart';
 
 class DetailAgent extends StatelessWidget {
   const DetailAgent({Key? key}) : super(key: key);
@@ -22,17 +23,10 @@ class DetailAgent extends StatelessWidget {
         ),
         centerTitle: true,
         backgroundColor: redbackground,
-        // flexibleSpace: Container(
-        //   decoration: BoxDecoration(
-        //     gradient: LinearGradient(colors: [redbackground, blackgroundColor]),
-        //   ),
-        // ),
       ),
       body: Stack(
         children: [
           SizedBox(
-            // height: MediaQuery.of(context).size.height,
-            // width: MediaQuery.of(context).size.width,
             child: CustomPaint(
               size: Size(1280.w, 300.h),
               painter: TriangleBackground(),
@@ -242,40 +236,4 @@ class DetailAgent extends StatelessWidget {
   }
 }
 
-class TriangleBackground extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    // Layer 1
 
-    Paint paintFill0 = Paint()
-      ..color = const Color.fromARGB(255, 255, 70, 85)
-      ..style = PaintingStyle.fill
-      ..strokeWidth = size.width * 0.00
-      ..strokeCap = StrokeCap.butt
-      ..strokeJoin = StrokeJoin.miter;
-
-    Path path_0 = Path();
-    path_0.moveTo(size.width * 0.9983333, 0);
-    path_0.lineTo(size.width, size.height * 0.9985714);
-    path_0.lineTo(size.width * 0.4956917, size.height * 0.4850714);
-    path_0.lineTo(0, size.height * -0.0057143);
-
-    canvas.drawPath(path_0, paintFill0);
-
-    // Layer 1
-
-    Paint paintStroke0 = Paint()
-      ..color = const Color.fromARGB(0, 33, 150, 243)
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = size.width * 0.00
-      ..strokeCap = StrokeCap.butt
-      ..strokeJoin = StrokeJoin.miter;
-
-    canvas.drawPath(path_0, paintStroke0);
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return true;
-  }
-}
