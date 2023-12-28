@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -57,9 +58,14 @@ class MapView extends GetView<MapController> {
               itemBuilder: (context, index) {
                 MapModel map = snapshot.data![index];
                 // print(map.displayIcon);
-                return GestureDetector(
-                  onTap: () => Get.to(() => const DetailMap(), arguments: map),
-                  child: Container(
+                return OpenContainer(
+                  tappable: true,
+                  transitionDuration: const Duration(milliseconds: 800),
+                  closedColor: Colors.transparent,
+                  openColor: Colors.transparent,
+                  clipBehavior: Clip.hardEdge,
+                  openBuilder: (context, action) => DetailMap(map: map),
+                  closedBuilder: (context, action) => Container(
                     width: 200.w,
                     height: 200.h,
                     decoration: BoxDecoration(

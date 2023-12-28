@@ -10,10 +10,11 @@ import 'package:valorant_insider/app/modules/Map/controllers/map_controller.dart
 import 'package:valorant_insider/app/widgets/painter.dart';
 
 class DetailMap extends GetView<MapController> {
-  const DetailMap({super.key});
+  const DetailMap({required this.map,super.key});
+  final MapModel map;
   @override
   Widget build(BuildContext context) {
-    MapModel map = Get.arguments;
+    // MapModel map = Get.arguments;
     var imageList = [map.displayIcon, map.listViewIcon, map.splash];
     final List<Widget> imageSliders = imageList
         .map((item) => Container(
