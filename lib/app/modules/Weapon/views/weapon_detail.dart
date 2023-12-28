@@ -2,18 +2,16 @@ import 'package:cached_network_image/cached_network_image.dart';
 // import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:valorant_insider/app/constant/constant.dart';
 import 'package:valorant_insider/app/data/models/weapon_model.dart';
 import 'package:valorant_insider/app/widgets/painter.dart';
 
 class DetailWeapon extends StatelessWidget {
-  const DetailWeapon({super.key});
-
+  const DetailWeapon({required this.weapon,super.key});
+  final WeaponModel weapon;
   @override
   Widget build(BuildContext context) {
-    WeaponModel weapon = Get.arguments;
     return Scaffold(
       backgroundColor: blackgroundColor,
       appBar: AppBar(

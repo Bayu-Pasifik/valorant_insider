@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -60,55 +61,64 @@ class WeaponView extends GetView<WeaponController> {
               itemBuilder: (context, index) {
                 WeaponModel weapon = snapshot.data![index];
                 // print(weapon.displayIcon);
-                return GestureDetector(
-                  onTap: () =>
-                      Get.to(() => const DetailWeapon(), arguments: weapon),
-                  child: Container(
-                    width: 200.w,
-                    height: 200.h,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: redbackground, width: 1)),
-                    child: Padding(
-                      padding: EdgeInsets.all(8.r),
-                      child: Column(children: [
-                        SizedBox(
-                          width: 200.w,
-                          height: 20.h,
-                          child: Text(
-                            "${weapon.displayName}",
-                            overflow: TextOverflow.ellipsis,
-                            style: GoogleFonts.bowlbyOneSc(color: Colors.white),
-                          ),
-                        ),
-                        SizedBox(
+                return OpenContainer(
+                    tappable: true,
+                    transitionDuration: const Duration(milliseconds: 800),
+                    closedColor: Colors.transparent,
+                    openColor: Colors.transparent,
+                    clipBehavior: Clip.hardEdge,
+                    closedBuilder: (context, action) => Container(
                           width: 200.w,
                           height: 200.h,
-                          // color: Colors.amber,
-                          child: CachedNetworkImage(
-                            imageUrl: weapon.displayIcon ?? "",
-                            imageBuilder: (context, imageProvider) => Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(16.r),
-                                image: DecorationImage(
-                                  image: imageProvider,
-                                  fit: BoxFit.fitWidth,
+                          decoration: BoxDecoration(
+                              border:
+                                  Border.all(color: redbackground, width: 1)),
+                          child: Padding(
+                            padding: EdgeInsets.all(8.r),
+                            child: Column(children: [
+                              SizedBox(
+                                width: 200.w,
+                                height: 20.h,
+                                child: Text(
+                                  "${weapon.displayName}",
+                                  overflow: TextOverflow.ellipsis,
+                                  style: GoogleFonts.bowlbyOneSc(
+                                      color: Colors.white),
                                 ),
                               ),
-                            ),
-                            progressIndicatorBuilder:
-                                (context, url, downloadProgress) => Center(
-                              child: CircularProgressIndicator(
-                                  value: downloadProgress.progress),
-                            ),
-                            errorWidget: (context, url, error) => Image.asset(
-                              "assets/images/Image_not_available.png",
-                            ),
+                              SizedBox(
+                                width: 200.w,
+                                height: 200.h,
+                                // color: Colors.amber,
+                                child: CachedNetworkImage(
+                                  imageUrl: weapon.displayIcon ?? "",
+                                  imageBuilder: (context, imageProvider) =>
+                                      Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(16.r),
+                                      image: DecorationImage(
+                                        image: imageProvider,
+                                        fit: BoxFit.fitWidth,
+                                      ),
+                                    ),
+                                  ),
+                                  progressIndicatorBuilder:
+                                      (context, url, downloadProgress) =>
+                                          Center(
+                                    child: CircularProgressIndicator(
+                                        value: downloadProgress.progress),
+                                  ),
+                                  errorWidget: (context, url, error) =>
+                                      Image.asset(
+                                    "assets/images/Image_not_available.png",
+                                  ),
+                                ),
+                              ),
+                            ]),
                           ),
                         ),
-                      ]),
-                    ),
-                  ),
-                );
+                    openBuilder: (context, action) =>
+                        DetailWeapon(weapon: weapon));
               },
             );
           },
