@@ -1,72 +1,53 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:valorant_insider/app/constant/constant.dart';
 import 'package:valorant_insider/app/routes/app_pages.dart';
 
-class ContainerToClip extends StatelessWidget {
-  const ContainerToClip(
-    this.text,
-    this.assets, {
-    required this.isImageOnLeft,
-    required this.to,
+class HomeMenuContainer extends StatelessWidget {
+  const HomeMenuContainer({
+    required this.title,
+    required this.destination,
+    required this.asset,
     super.key,
   });
-
-  final String text;
-  final String assets;
-  final bool isImageOnLeft;
-  final String to;
-
+  final String title;
+  final String destination;
+  final String asset;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => to == "agent"
+      onTap: () => destination == "Agent"
           ? Get.toNamed(Routes.AGENT)
-          : to == "buddies"
-              ? Get.toNamed(Routes.BUDDIES)
-              : to == "map"
-                  ? Get.toNamed(Routes.MAP)
-                  : to == "playercard"
-                      ? Get.toNamed(Routes.PLAYER_CARD)
-                      : to == "playerTitle"
+          : destination == "Map"
+              ? Get.toNamed(Routes.MAP)
+              : destination == "Weapon"
+                  ? Get.toNamed(Routes.WEAPON)
+                  : destination == "Buddies"
+                      ? Get.toNamed(Routes.BUDDIES)
+                      : destination == "playtitle"
                           ? Get.toNamed(Routes.PLAYER_TITLE)
-                          : Get.toNamed(Routes.WEAPON),
+                          : Get.toNamed(Routes.PLAYER_CARD),
       child: Container(
-        height: 160,
-        padding: const EdgeInsets.all(20),
-        // color: color,
-        decoration: BoxDecoration(
-            gradient:
-                LinearGradient(colors: [redbackground, blackgroundColor])),
-        child: Row(
-          children: [
-            if (isImageOnLeft)
-              Align(
-                alignment: Alignment.centerLeft,
-                child: SizedBox(
-                  height: 150,
-                  width: 150,
-                  child: Image.asset(assets),
-                ),
-              ),
-            Expanded(
-              child: Text(
-                text.toUpperCase(),
-                style: GoogleFonts.bowlbyOneSc(color: Colors.white),
-              ),
+        height: 130.h,
+        width: 200.w,
+        decoration: BoxDecoration(border: Border.all(color: redbackground)),
+        child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+          Text(
+            title,
+            style:
+                GoogleFonts.bowlbyOneSc(color: Colors.white, fontSize: 30.sp),
+          ),
+          SizedBox(
+            width: 140.w,
+            height: 140.h,
+            child: Image.asset(
+              asset,
+              fit: BoxFit.scaleDown,
             ),
-            if (!isImageOnLeft)
-              Align(
-                alignment: Alignment.centerRight,
-                child: SizedBox(
-                  height: 150,
-                  width: 150,
-                  child: Image.asset(assets),
-                ),
-              ),
-          ],
-        ),
+          )
+        ]),
       ),
     );
   }
