@@ -1,16 +1,16 @@
-import 'package:animations/animations.dart';
+// import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:valorant_insider/app/constant/constant.dart';
-import 'package:valorant_insider/app/modules/Agent/views/agent_view.dart';
-import 'package:valorant_insider/app/routes/app_pages.dart';
+// import 'package:valorant_insider/app/modules/Agent/views/agent_view.dart';
+// import 'package:valorant_insider/app/routes/app_pages.dart';
 import 'package:valorant_insider/app/widgets/custom_container.dart';
 
 import '../controllers/home_controller.dart';
-import 'package:custom_clippers/custom_clippers.dart';
+// import 'package:custom_clippers/custom_clippers.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);

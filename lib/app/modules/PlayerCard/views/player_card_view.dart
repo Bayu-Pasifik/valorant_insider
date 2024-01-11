@@ -72,24 +72,28 @@ class PlayerCardView extends GetView<PlayerCardController> {
                         SizedBox(
                           width: 200.w,
                           height: 20.h,
-                          child: Text(
-                            "${playerCard.displayName}",
-                            overflow: TextOverflow.ellipsis,
-                            style: GoogleFonts.bowlbyOneSc(color: Colors.white),
+                          child: Center(
+                            child: Text(
+                              "${playerCard.displayName}",
+                              overflow: TextOverflow.ellipsis,
+                              style:
+                                  GoogleFonts.bowlbyOneSc(color: Colors.white),
+                            ),
                           ),
                         ),
+                        SizedBox(height: 10.h),
                         SizedBox(
                           width: 200.w,
                           height: 200.h,
                           // color: Colors.amber,
                           child: CachedNetworkImage(
-                            imageUrl: playerCard.displayIcon ?? "",
+                            imageUrl: playerCard.largeArt ?? "",
                             imageBuilder: (context, imageProvider) => Container(
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(16.r),
+                                borderRadius: BorderRadius.circular(8.r),
                                 image: DecorationImage(
                                   image: imageProvider,
-                                  fit: BoxFit.cover,
+                                  fit: BoxFit.fill,
                                 ),
                               ),
                             ),
